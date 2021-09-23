@@ -3,5 +3,6 @@
     "target": "ES2019",
     "lib": ["esnext"],
     "experimentalDecorators": true,
+    "types": ["google-apps-script"],
   }
 }
