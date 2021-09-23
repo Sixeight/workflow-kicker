@@ -2,11 +2,11 @@ const API_BASE = 'https://api.github.com';
 
 class Workflow {
   static dispatch(
+    token: string,
     repository: string,
     workflowId: string,
     ref: string,
-    inputs: {[key: string]: string},
-    token: string
+    inputs: {[key: string]: string}
   ) {
     const path = `/repos/${repository}/actions/workflows/${workflowId}/dispatches`;
     const payload = {
