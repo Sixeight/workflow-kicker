@@ -1,0 +1,33 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name'
+        required: true
+      name:
+        description: 'Release name'
+        required: true
+      body:
+        description: 'Release body'
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: GitHub Script
+        uses: actions/github-script@v4.1.0
+        with:
+          script: |
+            await github.request('POST /repos/{owner}/{repo}/releases', {
+              owner: 'Sixeight',
+              repo: 'workflow-kicker',
+              tag_name: '${{ github.event.inputs.tag_name }}',
+              name: '${{ github.event.inputs.name }}',
+              body: '${{ github.event.inputs.body }}'
+            })
